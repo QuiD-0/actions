@@ -26,9 +26,6 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v4
 
-      - name: change directory
-        run: cd ./backend/sample && pwd && ls
-
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
@@ -41,4 +38,7 @@ jobs:
           gradle-version: 8.10.2
 
       - name: Build with Gradle
-        run: ls && ./gradlew build
+        run: |
+          cd ./backend/sample
+          chmod +x gradlew
+          ./gradlew build
