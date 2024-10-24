@@ -37,10 +37,6 @@ jobs:
 
       - name: init with Gradle
         uses: gradle/gradle-build-action@v2.4.2
-      - run: gradle init
-
-      - name: Build with Gradle
-        uses: gradle/gradle-build-action@v2.4.2
         with:
           gradle-version: 8.10.2
-          arguments: clean build
+          arguments: init clean build
