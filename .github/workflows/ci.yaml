@@ -24,10 +24,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout sources
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: change directory
-        run: cd ./backend/sample
+        run: cd ./backend/sample && pwd
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -35,8 +35,10 @@ jobs:
           distribution: 'corretto'
           java-version: 21
 
-      - name: Setup with Gradle
-        uses: gradle/actions/setup-gradle@v3
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 8.10.2
 
       - name: Build with Gradle
-        run: gradle clean build
+        run: ./gradlew build
