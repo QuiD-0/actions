@@ -35,6 +35,10 @@ jobs:
           distribution: 'corretto'
           java-version: 21
 
+      - name: init with Gradle
+        uses: gradle/gradle-build-action@v2.4.2
+      - run: gradle init
+
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2.4.2
         with:
