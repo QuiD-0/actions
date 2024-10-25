@@ -1,28 +1,13 @@
-name: ci-test
+name: test-on-pull-request
 
 on:
   pull_request:
     branches:
       - main
+    paths:
+      - backend/**
 
 jobs:
-  front-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout sources
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '21'
-
-      - name: Build With Npm
-        run: |
-          cd ./frontend
-          npm install
-          npm run test
-
   back-test:
     runs-on: ubuntu-latest
     steps:
