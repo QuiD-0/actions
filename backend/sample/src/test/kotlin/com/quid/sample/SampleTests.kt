@@ -12,4 +12,10 @@ class SampleTests {
         assertEquals(3, sample.add(1, 2))
     }
 
+    @Test
+    fun subtract(){
+        val sample = Sample()
+        assertEquals(1, sample.subtract(3, 2))
+    }
+
 }
