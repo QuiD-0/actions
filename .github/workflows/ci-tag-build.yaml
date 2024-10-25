@@ -10,6 +10,9 @@ jobs:
   front-build:
     if: startsWith(github.ref, 'refs/tags/front-')
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
@@ -28,6 +31,9 @@ jobs:
   back-build:
     if: startsWith(github.ref, 'refs/tags/back-')
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
