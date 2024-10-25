@@ -1,14 +1,12 @@
-name: ci
+name: ci-test
 
 on:
-  push:
-    tags:
-      - 'front-*'
-      - 'back-*'
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  front-build:
-    if: startsWith(github.ref, 'refs/tags/front-')
+  front-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout sources
@@ -23,10 +21,9 @@ jobs:
         run: |
           cd ./frontend
           npm install
-          npm run build
+          npm run test
 
-  back-build:
-    if: startsWith(github.ref, 'refs/tags/back-')
+  back-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout sources
@@ -46,4 +43,4 @@ jobs:
       - name: Build with Gradle
         run: |
           cd ./backend/sample
-          ./gradlew build -x test
+          ./gradlew test
