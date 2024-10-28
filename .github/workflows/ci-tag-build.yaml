@@ -64,5 +64,5 @@ jobs:
 
       - name: Publish to docker hub
         run: |
-          docker login -u $DOCKER_USER -p $DOCKER_TOKEN
+          docker login -u $DOCKER_USER --password-stdin $DOCKER_TOKEN
           docker push $DOCKER_USER/$DOCKER_IMAGE
