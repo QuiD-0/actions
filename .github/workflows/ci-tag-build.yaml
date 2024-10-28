@@ -50,3 +50,7 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew build -x test
+
+      - name: build docker image
+        run: |
+          docker build -t photograph-server:TAG=$(echo $GITHUB_REF | cut -d '/' -f 3) .
