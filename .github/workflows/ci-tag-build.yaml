@@ -51,6 +51,9 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build -x test
 
+      - name: Extract tag
+        run: echo "TAG=${GITHUB_REF#refs/tags/}" | cut -d '/' -f 2 >> $GITHUB_ENV
+
       - name: build docker image
         run: |
-          docker build -t photograph-server:TAG=$(echo $GITHUB_REF | cut -d '/' -f 3) .
+          docker build -t photograph-server:$TAG .
