@@ -16,12 +16,19 @@ jobs:
     if: github.event.inputs.target == 'view'
     runs-on: ubuntu-latest
     steps:
-    - name: check
-      run: echo "${{ github.event.inputs.target }}" this is view
+    - name: connect ssh
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        port: ${{ secrets.SSH_PORT }}
+        script: |
+          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/sample-front:${{ github.event.inputs.version }}
+          docker stop sample-front
+          docker rm sample-front
+          docker run -d -p 80:80 --name sample-front ${{ secrets.DOCKERHUB_USERNAME }}/sample-front:${{ github.event.inputs.version }}
 
   server-deploy:
     if: github.event.inputs.target == 'server'
     runs-on: ubuntu-latest
-    steps:
-    - name: check
-      run: echo "${{ github.event.inputs.target }}" this is server
