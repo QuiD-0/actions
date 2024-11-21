@@ -1,0 +1,27 @@
+name: deploy-latest
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'view or server'
+        required: true
+      version:
+        description: 'version'
+        required: true
+        default: 'latest'
+
+jobs:
+  view-deploy:
+    if: github.event.inputs.target == 'view'
+    runs-on: ubuntu-latest
+    steps:
+    - name: check
+      run: echo "${{ github.event.inputs.target }}" this is view
+
+  server-deploy:
+    if: github.event.inputs.target == 'server'
+    runs-on: ubuntu-latest
+    steps:
+    - name: check
+      run: echo "${{ github.event.inputs.target }}" this is server
