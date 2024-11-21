@@ -28,7 +28,3 @@ jobs:
           docker stop sample-front
           docker rm sample-front
           docker run -d -p 80:80 --name sample-front ${{ secrets.DOCKERHUB_USERNAME }}/sample-front:${{ github.event.inputs.version }}
-
-  server-deploy:
-    if: github.event.inputs.target == 'server'
-    runs-on: ubuntu-latest
